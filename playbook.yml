@@ -1,0 +1,7 @@
+---
+- name: RMQ
+  hosts: all
+  become: yes
+  roles: 
+    - system
+    - rmq-setup

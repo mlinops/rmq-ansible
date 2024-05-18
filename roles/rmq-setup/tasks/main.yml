@@ -1,0 +1,49 @@
+- name: Install required depricated packages
+  get_url:
+    url: "{{ rmq.dep_package_url}}"
+    dest: /tmp/libssl.deb
+
+- name: Install OpenSSL package
+  apt:
+    deb: /tmp/libssl.deb
+    state: present
+
+- name: Download & install RMQ main signing key
+  shell: curl -1sLf "{{ rmq.sign_key_url }}" | sudo gpg --dearmor | sudo tee /usr/share/keyrings/com.rabbitmq.team.gpg > /dev/null
+
+- name: Download & install modern Erlang repository signing key
+  shell: curl -1sLf "{{ rmq.erlang_key_url }}" | sudo gpg --dearmor | sudo tee /usr/share/keyrings/rabbitmq.E495BB49CC4BBE5B.gpg > /dev/null
+
+- name:  Download & install RMQ repository signing key
+  shell: curl -1sLf "{{ rmq.server_key_url }}" | sudo gpg --dearmor | sudo tee /usr/share/keyrings/rabbitmq.9F4587F226208342.gpg > /dev/null
+
+- name: Copy repository list template
+  template:
+    src: repository_list.j2
+    dest: /etc/apt/sources.list.d/rabbitmq.list
+
+- name: Update package index
+  apt:
+    update_cache: yes
+    state: present
+
+- name: install required packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ erlang_packages }}"
+
+- name: install required packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ rmq.packages }}"
+
+- name: Copy RMQ configuration files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: 'rabbitmq.j2', dest: '{{ rmq.conf_file }}' }
+    - { src: 'rabbitmq-env.j2', dest: '{{ rmq.env_conf_file }}' }
+  notify: Restart RabbitMQ

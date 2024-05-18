@@ -1,0 +1,16 @@
+---
+- name: Restart RabbitMQ
+  systemd:
+    name: rabbitmq-server
+    state: restarted
+  notify: Copy RabbitMQ cookie
+
+- name: Copy RabbitMQ cookie
+  copy:
+    src: /var/lib/rabbitmq/.erlang.cookie
+    dest: /root
+    owner: root
+    group: root
+    mode: 0400
+    remote_src: true
+  when: rabbitmq_restarted is defined and rabbitmq_restarted.changed

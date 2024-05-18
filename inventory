@@ -1,0 +1,9 @@
+[all]
+devcloud-rmq-node-01 ansible_host=100.66.0.6
+devcloud-rmq-node-02 ansible_host=100.66.0.7
+devcloud-rmq-node-03 ansible_host=100.66.0.8
+
+[all:vars]
+ansible_user = sadmin
+ansible_password = Aa123456
+ansible_become_password = Aa123456

@@ -1,0 +1,32 @@
+---
+dist: bullseye
+erlang_packages:
+  - erlang-base
+  - erlang-asn1
+  - erlang-crypto
+  - erlang-eldap
+  - erlang-ftp
+  - erlang-inets
+  - erlang-mnesia
+  - erlang-os-mon
+  - erlang-parsetools
+  - erlang-public-key
+  - erlang-runtime-tools
+  - erlang-snmp
+  - erlang-ssl
+  - erlang-syntax-tools
+  - erlang-tftp
+  - erlang-tools
+  - erlang-xmerl
+hostname: "{{ inventory_hostname }}"
+ip: "{{ ansible_host }}"
+rmq:
+  conf_file: /etc/rabbitmq/rabbitmq.conf
+  dep_package_url: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+  env_conf_file: /etc/rabbitmq/rabbitmq-env.conf
+  erlang_key_url: https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-erlang.E495BB49CC4BBE5B.key
+  packages:
+    - rabbitmq-server
+  server_key_url: https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-server.9F4587F226208342.key
+  sign_key_url: https://keys.openpgp.org/vks/v1/by-fingerprint/0A9AF2115F4687BD29803A206B73A36E6026DFCA
+
