@@ -1,7 +1,7 @@
 [all]
-devcloud-rmq-node-01 ansible_host=100.66.0.6
-devcloud-rmq-node-02 ansible_host=100.66.0.7
-devcloud-rmq-node-03 ansible_host=100.66.0.8
+rmq-node-01 ansible_host=10.66.10.66
+rmq-node-02 ansible_host=10.66.10.67
+rmq-node-03 ansible_host=10.66.10.68
 
 [all:vars]
 ansible_user = sadmin
