@@ -1,4 +1,10 @@
-![изображение](https://github.com/mlinops/rmq-ansible/assets/101510056/d2f434af-e3ed-49d5-be1d-ac1fae49c111)
+<!DOCTYPE html>
+<html>
+<head>    
+<h1># k8s</h1>
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/c9378e87-b17e-4397-a979-a13432807b5f" alt="K8s Image">
+</div>
 
 Clone this repository to your virtual machine that is functioning as an Ansible control node.
 ```
@@ -12,3 +18,5 @@ Run the following command to execute ansible playbook.
 ```
 ansible-playbook -i inventory playbook.yml
 ```
+</body>
+</html>
