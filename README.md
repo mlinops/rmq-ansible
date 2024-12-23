@@ -8,11 +8,11 @@
 
 Clone this repository to your virtual machine that is functioning as an Ansible control node.
 ```
-git clone https://github.com/mlinops/rmq.git
+git clone https://github.com/mlinops/k8s-ansible.git
 ```
 Navigate to the project ansible directory.
 ```
-cd ./rmq/ansible
+cd ./k8s-ansible/ansible
 ```
 Run the following command to execute ansible playbook.
 ```
